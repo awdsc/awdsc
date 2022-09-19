@@ -1,0 +1,131 @@
+body {
+    background: #fff;
+    color: #666666;
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  a {
+    color: #2dc997;
+    text-decoration: none;
+  }
+  
+  a:hover, a:active, a:focus {
+    color: #2dca98;
+    outline: none;
+    text-decoration: none;
+  }
+  
+  p {
+    padding: 0;
+    margin: 0 0 30px 0;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
+  
+  @media screen and (max-width: 768px) {
+    [data-aos-delay] {
+      transition-delay: 0 !important;
+    }
+  }
+section {
+    overflow: hidden;
+  }
+  
+  /* Sections Header
+  --------------------------------*/
+  .section-header .section-title {
+    font-size: 32px;
+    color: #111;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .section-header .section-description {
+    text-align: center;
+    padding-bottom: 40px;
+    color: #999;
+  }
+
+
+  #services {
+    background: #fff;
+    background-size: cover;
+    padding: 80px 0 60px 0;
+  }
+  #services .box {
+    padding: 15px 15px;
+    margin-bottom: 50px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    height: 200px;
+    position: relative;
+    background: #fafafa;
+  }
+  #services .icon {
+    
+    float : right ;
+    transition: 0.2s;
+    border: 1px solid rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100px;
+    height: 70px;
+    background: #fff;
+  }
+  #services .icon a {
+    display: inline-block;
+  }
+  #services .icon i {
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    line-height: 0;
+  }
+  #services .box:hover .icon {
+    background: #fff;
+    border: 2px solid #2dc997;
+  }
+  #services .box:hover .icon i {
+    color: #2dc997;
+  }
+  #services .box:hover .icon a {
+    color: #2dc997;
+  }
+  #services .title {
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  #services .title a {
+    color: #111;
+    
+  }
+  #services .description {
+    font-size: 14px;
+    line-height: 24px;
+    text-align: left;
+    margin-left: 15px;
+  }
+  #services  .pic {
+    overflow: hidden;
+    width: 200px;
+    height: 150px;
+    float: left;
+  } 
+  #services  .pic img {
+    max-width: auto;
+    height: 100%;
+    display: block;
+  }
