@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,7 +29,7 @@ public class Gall_board {
     
     //내용
     @Column(name = "content",nullable = true )
-    private int board_content;
+    private String board_content;
     
     //조회수
     @Column(name = "readcount",nullable = true)
