@@ -14,15 +14,11 @@ import java.util.List;
 @Controller
 public class mainPageCon {
 
-    @Autowired
-    private Board_service board_service;
-
-    @GetMapping("/")
+    @GetMapping("/main")
     public String mainPage(Model model)
     {
 
-        List<Gall_board> list = board_service.findAll();
-        System.out.println(list.get(0).getBoard_content());
+
         return "index";
     }
 

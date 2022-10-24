@@ -3,6 +3,7 @@ package com.example.pro_a.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -25,7 +26,7 @@ public class Gall_board {
     
     //제목
     @Column(name = "title",nullable = true )
-    private String board_title;
+    private String boardTitle;
     
     //내용
     @Column(name = "content",nullable = true )
@@ -33,7 +34,7 @@ public class Gall_board {
     
     //조회수
     @Column(name = "readcount",nullable = true)
-    private int board_readCount;
+    private int boardReadCount;
     
     //파일 이름
     @Column(name = "filename",nullable = true )
@@ -41,9 +42,13 @@ public class Gall_board {
     
     //추천수
     @Column(name = "recommendation_count",nullable = true)
-    private int recommendation_count;
+    private int recommendationCount;
     
     //삭제여부
     @Column(name = "elimination",nullable = true)
     private boolean elimination;
+    
+    //생성 날짜
+    @Column(name = "redDate", nullable = true)
+    private Date redDate;
 }

@@ -16,13 +16,13 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "member_code", nullable = false)
-    private Long member_code;
+    private Long memberCode;
 
     @Column(name ="mem_id")
-    private Long mem_id;
+    private String  memId;
 
     @Column(name = "mem_pass")
-    private Long mem_pass;
+    private Long memPass;
 
 
 }

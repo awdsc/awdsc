@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class Board_coment_service {
 
-    @Autowired
-    private ComentRepository comentRepository;
+
+    private final ComentRepository comentRepository;
 
 }
