@@ -4,6 +4,8 @@ import com.example.pro_a.DBService.Board_service;
 import com.example.pro_a.Entity.Gall_board;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,17 +22,14 @@ public class CartoonListCon {
     private final Board_service board_service;
 
     @GetMapping("list")
-    public String f_list(Model model)
+    public String f_list(Model model , @PageableDefault(size = 20) Pageable pageable)
     {
         return "list";
     }
 
     @GetMapping("/list/{type}/{search}")
     public String s_list(Model model, @PathVariable String type,@PathVariable String search) throws ParseException {
-
-
         List<Gall_board> sList = board_service.search(type,search);
-
         model.addAttribute(sList);
         return "lista";
     }
