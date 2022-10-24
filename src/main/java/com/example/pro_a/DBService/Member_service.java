@@ -3,7 +3,7 @@ package com.example.pro_a.DBService;
 import com.example.pro_a.DBinterface.MemberRepository;
 import com.example.pro_a.Entity.Member;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 @Service

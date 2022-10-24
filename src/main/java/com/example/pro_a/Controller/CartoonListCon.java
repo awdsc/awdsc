@@ -3,7 +3,7 @@ package com.example.pro_a.Controller;
 import com.example.pro_a.DBService.Board_service;
 import com.example.pro_a.Entity.Gall_board;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
