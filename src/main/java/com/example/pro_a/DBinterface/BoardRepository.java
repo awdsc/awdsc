@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public interface BoardRepository extends JpaRepository<Gall_board, Long> {
-    List<Gall_board> findByBoardTitle(String search);
+    List<Gall_board> findByBoardTitleContaining(String search);
     List<Gall_board> findByWriter(Long writer);
 
     //추천수 이상 이하

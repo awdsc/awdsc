@@ -17,7 +17,7 @@ public class Gall_board {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "gall_number", nullable = false)
-    private int id;
+    private Long id;
 
     //작성자 외래키 연결 : member >> member_code
     @Column(name = "writer",nullable = true)

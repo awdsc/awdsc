@@ -17,8 +17,6 @@ public class mainPageCon {
     @GetMapping("/main")
     public String mainPage(Model model)
     {
-
-
         return "index";
     }
 
