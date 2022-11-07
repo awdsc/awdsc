@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        html, body { height: 100%; }
+
+        .custom-context-menu {
+            position: absolute;
+            box-sizing: border-box;
+            min-height: 100px;
+            min-width: 200px;
+            background-color: #ffffff;
+            box-shadow: 0 0 1px 2px lightgrey;
+        }
+
+        .custom-context-menu ul {
+            list-style: none;
+            padding: 0;
+            background-color: transparent;
+        }
+
+        .custom-context-menu li {
+            padding: 3px 5px;
+            cursor: pointer;
+
+
+        }
+
+        .custom-context-menu li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id = "contextmenu" class="custom-context-menu" style="display: none;">
+        <ul>
+            <li onclick="createObject(1)">aaaaaaaaaaaa</li>
+            <li onclick="createObject(2)">aaaaaaaaaaaa</li>
+            <li onclick="createObject(3)">aaaaaaaaaaaa</li>
+            <li onclick="createObject(4)">aaaaaaaaaaaa</li>
+            <li onclick="createObject(5)">aaaaaaaaaaaa</li>
+            <li onclick="createObject(6)">https://heodolf.tistory.com/120</li>
+        </ul>
+
+    </div>
+    <script src="../static/assets/js/main.js"></script>
+    <script src="../static/assets/js/cartoonMakeIndex.js"></script>
+</body>
+</html>

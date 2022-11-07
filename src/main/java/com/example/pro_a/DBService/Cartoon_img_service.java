@@ -19,13 +19,9 @@ public class Cartoon_img_service {
         return cartoon_img.get();
     }
 
-    public void imgSave(Object obj)
+    public void imgSave(Cartoon_img cartoon_img)
     {
-        Cartoon_img cartoon_img = Cartoon_img.builder()
-
-                .build();
-
-        //cartoonImgRepository.save()
+        cartoonImgRepository.save(cartoon_img);
     }
 
 

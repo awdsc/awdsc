@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CartoonSpeechBubbleRepository extends JpaRepository<Cartoon_speech_bubble,Long> {
-    List<Cartoon_speech_bubble> findAllById(String id);
+    List<Cartoon_speech_bubble> findAllByCartoonId(String id);
 }

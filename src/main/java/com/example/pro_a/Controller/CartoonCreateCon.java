@@ -17,6 +17,12 @@ public class CartoonCreateCon {
     private  final Cartoon_img_service cartoon_img_service;
     private  final Cartoon_speech_bubble_service cartoon_speech_bubble_service;
 
+    @GetMapping
+    public String aa()
+    {
+        return "cartoonMakepage";
+    }
+
     @GetMapping("/{id}")
     public String cartoonCreate(Long id){
 

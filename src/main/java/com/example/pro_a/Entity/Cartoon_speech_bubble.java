@@ -19,13 +19,13 @@ public class Cartoon_speech_bubble {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cartoon_id", nullable = false)
-    private Long cartoon_id;
+    private Long cartoonId;
 
     @Column(name = "img", nullable = true)
-    private Long img_number;
+    private Long imgNumber;
 
     @Column(name = "speech_bubble_type", nullable = true)
-    private String speech_bubble_type;
+    private String speechBubbleType;
 
     @Column(name = "position", nullable = true)
     private String position;
