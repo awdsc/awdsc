@@ -17,6 +17,35 @@
 CREATE DATABASE IF NOT EXISTS `cartoon_gall` /*!40100 DEFAULT CHARACTER SET utf8mb3 */;
 USE `cartoon_gall`;
 
+-- 테이블 cartoon_gall.cartoon_img 구조 내보내기
+CREATE TABLE IF NOT EXISTS `cartoon_img` (
+  `cartoon_id` varchar(50) NOT NULL,
+  `img_1` varchar(50) DEFAULT NULL,
+  `img_2` varchar(50) DEFAULT NULL,
+  `img_3` varchar(50) DEFAULT NULL,
+  `img_4` varchar(50) DEFAULT NULL,
+  `member_code` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cartoon_id`),
+  KEY `memfn` (`member_code`),
+  CONSTRAINT `memfn` FOREIGN KEY (`member_code`) REFERENCES `member` (`member_code`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 cartoon_gall.cartoon_speech_bubble 구조 내보내기
+CREATE TABLE IF NOT EXISTS `cartoon_speech_bubble` (
+  `cartoon_id` varchar(50) NOT NULL,
+  `img` int(11) DEFAULT NULL,
+  `speech_bubble_type` varchar(50) DEFAULT NULL,
+  `position` varchar(50) DEFAULT NULL,
+  `size` varchar(50) DEFAULT NULL,
+  `content_text` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`cartoon_id`),
+  CONSTRAINT `catoonfn` FOREIGN KEY (`cartoon_id`) REFERENCES `cartoon_img` (`cartoon_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
 -- 테이블 cartoon_gall.gall_board 구조 내보내기
 CREATE TABLE IF NOT EXISTS `gall_board` (
   `gall_number` int(11) NOT NULL AUTO_INCREMENT COMMENT '식별',
@@ -28,10 +57,11 @@ CREATE TABLE IF NOT EXISTS `gall_board` (
   `filename` varchar(3000) NOT NULL COMMENT '파일',
   `recommendation_count` int(11) NOT NULL DEFAULT 0 COMMENT '추천수',
   `elimination` tinyint(4) NOT NULL DEFAULT 0 COMMENT '삭제여부(기본:0)',
+  `red_date` datetime DEFAULT NULL,
   PRIMARY KEY (`gall_number`),
   KEY `mem_to_bo` (`writer`),
   CONSTRAINT `mem_to_bo` FOREIGN KEY (`writer`) REFERENCES `member` (`member_code`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -42,11 +72,19 @@ CREATE TABLE IF NOT EXISTS `gall_coment` (
   `writer` int(11) NOT NULL DEFAULT 0 COMMENT '작성자',
   `content` varchar(1000) NOT NULL DEFAULT '0' COMMENT '내용',
   `redDate` date NOT NULL COMMENT '생성일',
+  `red_date` datetime DEFAULT NULL,
   PRIMARY KEY (`coment_no`),
   KEY `mem_to_co` (`writer`),
   KEY `board_to_co` (`board_no`),
   CONSTRAINT `board_to_co` FOREIGN KEY (`board_no`) REFERENCES `gall_board` (`gall_number`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `mem_to_co` FOREIGN KEY (`writer`) REFERENCES `member` (`member_code`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 cartoon_gall.hibernate_sequence 구조 내보내기
+CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
@@ -57,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   `mem_id` varchar(1000) NOT NULL DEFAULT '0',
   `mem_pass` varchar(1000) NOT NULL DEFAULT '0',
   PRIMARY KEY (`member_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
