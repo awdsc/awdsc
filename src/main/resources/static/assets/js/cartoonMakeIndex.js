@@ -1,4 +1,5 @@
 
+let cut = 1;
  function rightClick(event)
 {
     event.preventDefault();
@@ -96,7 +97,9 @@ backgreound.ondrop = (e ) =>
             img.style.outline = "none";
             img.style.width = "100%";
             img.style.height = "100%";
+
             backgreound.appendChild(img);
+
             document.getElementById("insertHelper").style.display  ="none";
         }else
         {
@@ -111,6 +114,17 @@ backgreound.ondrop = (e ) =>
 
 }
 
+function nextCut()
+{
+    let finder = document.getElementsByClassName("cobj");
+    //데이터 정리
+    let jsondata = {
+
+    }
+}
+
+
+
  function maker(bType,sx,sy,ex,ey)
 {
     let sector = document.getElementById("createCut");
@@ -122,8 +136,7 @@ backgreound.ondrop = (e ) =>
     CM.style.width = (ex-sx)+'px';
     CM.style.height = (ey-sy)+'px';
     CM.style.zIndex = 3;
-    CM.draggable = true;
-
+    CM.classList += "cobj";
     let img = document.createElement("img")
     img.src = "../static/assets/img/"+bType +".png";
     img.classList += "cimg";
@@ -135,7 +148,6 @@ backgreound.ondrop = (e ) =>
     CM.appendChild(speech);
     CM.appendChild(img);
     sector.appendChild(CM);
-
 
     objCounter ++;
     console.log("생성완료");
