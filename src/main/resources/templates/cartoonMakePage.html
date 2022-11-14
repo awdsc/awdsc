@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="../static/assets/css/cartoonMake.css" rel ="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
 </head>
 <body>
 
     <section id = "createCut" class="make">
         <div class="backgroundImg" id ="background">
             <h3 id = "insertHelper" style="text-align: center">이미지를 올려주세요.</h3>
+        </div>
+
+        <div onclick="nextCut()" class="nextButton" >
+            <button class="btn btn-outline-success" style="height: inherit;width: inherit" >다음컷으로</button>
+
         </div>
     </section>
     <div id = "contextmenu" class="custom-context-menu" style="display: none;">
@@ -20,7 +26,9 @@
             <li onclick="createObject('boom')">폭발 말풍선</li>
         </ul>
     </div>
-
+    <div onclick="nextCut()" class="nextButton" >
+        <h1>aaaaaaaaaaaaaaaaaaaa</h1>
+    </div>
     <script src="../static/assets/js/main.js"></script>
     <script src="../static/assets/js/cartoonMakeIndex.js"></script>
 </body>

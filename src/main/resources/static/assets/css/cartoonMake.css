@@ -64,3 +64,10 @@ html, body { height: 100%; }
     background-color: gray;
     transform: translate(50%,30%);
 }
+
+.nextButton{
+    position: fixed;
+    width: 30%;
+    height: 30%;
+    transform: translate(300%,50%);
+}

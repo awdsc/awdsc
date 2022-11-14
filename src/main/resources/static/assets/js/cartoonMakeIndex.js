@@ -131,7 +131,6 @@ backgreound.ondrop = (e ) =>
     let speech = document.createElement("textarea");
     speech.innerText = "텍스트를 입력해 주세요.";
     speech.classList += "ctextarea";
-    speech.focus = ()=> {speech.style.border = none;};
 
     CM.appendChild(speech);
     CM.appendChild(img);
@@ -141,53 +140,6 @@ backgreound.ondrop = (e ) =>
     objCounter ++;
     console.log("생성완료");
 }
-/*
-let container = document.querySelector("draggable");
- container.addEventListener("mousedown", dragStart, false);
- container.addEventListener("mouseup", dragEnd, false);
- container.addEventListener("mousemove", drag, false);
-
- function dragStart(e) {
-     if (e.type === "touchstart") {
-         initialX = e.touches[0].clientX - xOffset;
-         initialY = e.touches[0].clientY - yOffset;
-     } else {
-         initialX = e.clientX - xOffset;
-         initialY = e.clientY - yOffset;
-     }
-
-     if (e.target === dragItem) {
-         active = true;
-     }
- }
-
- function dragEnd(e) {
-     initialX = currentX;
-     initialY = currentY;
-
-     active = false;
- }
-
- function drag(e) {
-     if (active) {
-
-         e.preventDefault();
-
-         if (e.type === "touchmove") {
-             currentX = e.touches[0].clientX - initialX;
-             currentY = e.touches[0].clientY - initialY;
-         } else {
-             currentX = e.clientX - initialX;
-             currentY = e.clientY - initialY;
-         }
-
-         xOffset = currentX;
-         yOffset = currentY;
-
-         setTranslate(currentX, currentY, dragItem);
-     }
- }
-*/
 
 document.addEventListener('contextmenu',rightClick,false);
 document.addEventListener('click',defaultClick,false);
