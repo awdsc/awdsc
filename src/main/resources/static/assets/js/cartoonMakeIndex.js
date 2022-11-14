@@ -116,7 +116,7 @@ backgreound.ondrop = (e ) =>
     let sector = document.getElementById("createCut");
     let CM = document.createElement("div");
     CM.id = "div" +objCounter;
-    CM.style.position = "relative";
+    CM.style.position = "absolute";
     CM.style.top = sy+'px';
     CM.style.left = sx +'px';
     CM.style.width = (ex-sx)+'px';
