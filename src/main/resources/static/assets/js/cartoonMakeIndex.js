@@ -117,10 +117,18 @@ backgreound.ondrop = (e ) =>
 function nextCut()
 {
     let finder = document.getElementsByClassName("cobj");
+    console.log()
     //데이터 정리
     let jsondata = {
+        "img" : //finder.item(0).
+        "cartoon_spreech_bubble" :{
 
+        },
+        "writer" : "",
+        "title" : "",
+        "content" : ""
     }
+    //sessionStorage.setItem("cobj" + cut, finder);
 }
 
 
