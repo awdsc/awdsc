@@ -22,4 +22,7 @@ public class Cartoon_speech_bubble_service {
         cartoonSpeechBubbleRepository.saveAll(cartoon_speech_bubbles);
     }
 
+    public void saveAll(List<Cartoon_speech_bubble> cartoon_speech_bubbles) {
+        cartoonSpeechBubbleRepository.saveAll(cartoon_speech_bubbles);
+    }
 }

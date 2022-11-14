@@ -35,4 +35,7 @@ public class Cartoon_speech_bubble {
 
     @Column(name = "content_text" , nullable = true)
     private String content_text;
+
+    @Column(name = "class" , nullable = true)
+    private String ClassList;
 }

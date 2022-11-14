@@ -90,7 +90,7 @@ public class Board_service {
     public Gall_board findOneBoard(Long id)
     {
         Optional<Gall_board> gall_board = boardRepository.findById(id);
-        return gall_board.get();
+        return gall_board.orElse(null);
     }
 
 }
