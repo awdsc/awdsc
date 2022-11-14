@@ -93,4 +93,7 @@ public class Board_service {
         return gall_board.orElse(null);
     }
 
+    public void saveAuto(Gall_board gall_board) {
+        boardRepository.save(gall_board);
+    }
 }

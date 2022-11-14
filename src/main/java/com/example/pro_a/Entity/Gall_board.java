@@ -3,6 +3,7 @@ package com.example.pro_a.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -50,5 +51,5 @@ public class Gall_board {
     
     //생성 날짜
     @Column(name = "redDate", nullable = true)
-    private Date redDate;
+    private LocalDate redDate;
 }

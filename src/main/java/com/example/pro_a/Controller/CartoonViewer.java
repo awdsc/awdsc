@@ -37,7 +37,7 @@ public class CartoonViewer {
 
         mm.addAttribute("cartoon",gall_board);
         mm.addAttribute("cartoonImg",cartoon_img);
-        mm.addAttribute("carttonBubble",cartoon_speech_bubbles);
+        mm.addAttribute("cartoonBubble",cartoon_speech_bubbles);
         mm.addAttribute("conment",coments);
 
         return "/cartoonViewer";

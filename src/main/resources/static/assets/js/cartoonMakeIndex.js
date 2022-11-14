@@ -69,25 +69,48 @@ function saveS(event)
      }
  }
 
- function moveObj(id) {
-    let selectObj = document.getElementById(id);
 
- }
+let backgreound = document.getElementById("background");
+backgreound.ondragover = (e) =>{e.preventDefault();}
+backgreound.ondrop = (e ) =>
+{
+    e.preventDefault();
+
+    let data = e.dataTransfer.files;
+    let img;
+
+    if(data.length === 1){
+        console.log(data[0].type);
+        if(data[0].type.match("image.*"))
+        {
+            if(!document.getElementById("cartoonBackGroundImg"))
+            {
+                img = document.createElement("img");
+                img.id = "cartoonBackGroundImg";
+            }else
+            {
+                img =  document.getElementById("cartoonBackGroundImg")
+            }
+
+            img.src = window.URL.createObjectURL(data[0]);
+            img.style.outline = "none";
+            img.style.width = "100%";
+            img.style.height = "100%";
+            backgreound.appendChild(img);
+            document.getElementById("insertHelper").style.display  ="none";
+        }else
+        {
+            console.log("error2");
+        }
+    }
+    else {
+        console.log("error1");
+
+    }
 
 
+}
 
-
- function dbCreateSpeech(id) {
-
-     let speechDiv = document.getElementById(id);
-     let speech = document.createElement("a");
-     speech.innerText = "텍스트를 입력해 주세요.";
-     speech.style.textAlign = "center";
-     console.log(speechDiv.innerHTML);
-     console.log(speech.innerHTML);
-     speechDiv.appendChild(speech);
-     return function (){};
- }
  function maker(bType,sx,sy,ex,ey)
 {
     let sector = document.getElementById("createCut");

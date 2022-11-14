@@ -12,8 +12,10 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CartoonVo {
+public class CartoonSaveVo {
     private List<String> img; //img 영역
     private List<Cartoon_speech_bubble> cartoon_speech_bubbleList;
-
+    private int writer;
+    private String title;
+    private String content;
 }

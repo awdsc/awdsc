@@ -33,20 +33,21 @@ html, body { height: 100%; }
 .cimg{
     height : inherit;
     width : inherit;
-    position : fixed;
+    position : absolute;
 
 }
 
 .ctextarea{
-    position : fixed;
+    position : absolute;
     z-Index : 5;
-    height : inherit;
-    width : inherit;
+    height :50%;
+    width : 50%;
     background-color : transparent;
     border : none;
     text-align: center;
-    vertical-align: center;
-    display: flex;
+    transform: translate(50%,90%);
+
+    resize: none;
 
 }
 .ctextarea:focus{
@@ -54,4 +55,12 @@ html, body { height: 100%; }
     align-content: center;
     align-items: center;
 
+}
+
+.backgroundImg{
+    width: 50%;
+    height: 50%;
+    justify-content: center;
+    background-color: gray;
+    transform: translate(50%,50%);
 }
