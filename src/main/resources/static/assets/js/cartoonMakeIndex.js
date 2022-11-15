@@ -1,5 +1,13 @@
 
 let cut = 1;
+if(sessionStorage.getItem("cut") != null)
+{
+    cut =sessionStorage.getItem("cut");
+}
+
+
+let format = new FormData();
+
  function rightClick(event)
 {
     event.preventDefault();
@@ -79,9 +87,7 @@ backgreound.ondrop = (e ) =>
 
     let data = e.dataTransfer.files;
     let img;
-
     if(data.length === 1){
-        console.log(data[0].type);
         if(data[0].type.match("image.*"))
         {
             if(!document.getElementById("cartoonBackGroundImg"))
@@ -92,15 +98,15 @@ backgreound.ondrop = (e ) =>
             {
                 img =  document.getElementById("cartoonBackGroundImg")
             }
-
             img.src = window.URL.createObjectURL(data[0]);
             img.style.outline = "none";
             img.style.width = "100%";
             img.style.height = "100%";
-
             backgreound.appendChild(img);
-
+            //이미지 파일을 바이너리로 저장
+            format.append("cimg"+cut,data[0]);
             document.getElementById("insertHelper").style.display  ="none";
+            objCounter ++;
         }else
         {
             console.log("error2");
@@ -113,25 +119,34 @@ backgreound.ondrop = (e ) =>
 
 
 }
-
-function nextCut()
+let list_bubble = [];
+function nextCut(name)
 {
     let finder = document.getElementsByClassName("cobj");
-    console.log()
-    //데이터 정리
-    let jsondata = {
-        "img" : //finder.item(0).
-        "cartoon_spreech_bubble" :{
+    for(let i = 0;i<finder.length;i++)
+    {
+        let json = {
+            "img" : finder.item(i).children.item(1),
+            "position" : [finder.item(i).style.top,finder.item(i).style.left],
+            "size" : [finder.item(i).style.height,finder.item(i).style.width],
+            "context" : finder.item(i).children.item(0).textContent,
+            "class" : finder.item(i).classList.toString()
+        }
+        list_bubble.push(json);
 
-        },
-        "writer" : "",
-        "title" : "",
-        "content" : ""
     }
-    //sessionStorage.setItem("cobj" + cut, finder);
+    list_bubble.push(format.get("cimg"+cut));
+
+    cut++;
+
+    sessionStorage.setItem("cut",cut.toString());
+    //ajax 전송 + 페이지 리프레쉬
+    let sender = new XMLHttpRequest;
+    sender.open("POST","/*",true);
+    sender.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    sender.send(list_bubble);
+    location.reload();
 }
-
-
 
  function maker(bType,sx,sy,ex,ey)
 {
@@ -158,7 +173,7 @@ function nextCut()
     sector.appendChild(CM);
 
     objCounter ++;
-    console.log("생성완료");
+
 }
 
 document.addEventListener('contextmenu',rightClick,false);
