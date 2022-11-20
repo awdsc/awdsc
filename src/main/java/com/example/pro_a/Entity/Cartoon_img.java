@@ -10,10 +10,12 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+
 @Table(name = "cartoon_img")
 public class Cartoon_img {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cartoon_id", nullable = false)
     private Long cartoon_id;
 
@@ -29,7 +31,8 @@ public class Cartoon_img {
     @Column(name = "img_4",nullable = true)
     private String img4;
 
-    @Column(name = "member",nullable = false)
+
+    @Column(name = "member_code", nullable = true)
     private Long member;
 
 

@@ -6,6 +6,8 @@ import com.example.pro_a.DBService.Cartoon_img_service;
 import com.example.pro_a.DBService.Cartoon_speech_bubble_service;
 import com.example.pro_a.Entity.Cartoon_img;
 import com.example.pro_a.Entity.Cartoon_speech_bubble;
+import com.example.pro_a.Entity.Gall_board;
+import com.example.pro_a.Entity.Member;
 import com.example.pro_a.VO.BackgraoundImg;
 import lombok.RequiredArgsConstructor;
 
@@ -32,27 +34,26 @@ public class CartoonCreateCon {
     private  final Cartoon_img_service cartoon_img_service;
     private  final Cartoon_speech_bubble_service cartoon_speech_bubble_service;
     private  final Board_service board_service;
-
-    private  Cartoon_img cartoon_img  = new Cartoon_img();
-
+    private   List<Cartoon_speech_bubble> cartoon_speech_bubbles = new ArrayList<>();
+    private  Cartoon_img cartoon_img = new Cartoon_img();
+    private Long cartoonNum;
     @GetMapping
     public String aa()
     {
+        cartoonNum =  cartoon_img_service.getLastNum().getCartoon_id();
+        cartoonNum++;
         return "cartoonMakepage";
     }
 
 
     @PostMapping("/submit")
     @ResponseBody
-    public String cartoonSave(@RequestParam("cimg") MultipartFile cimg, @RequestParam("cut") String cut, @RequestParam("cobj") String[] s ) throws ParseException {
+    public String cartoonSave(@RequestParam("cimg") MultipartFile cimg, @RequestParam("cut") String cut, @RequestParam("cobj") String[] s , @RequestParam("cut4") String u) throws ParseException {
         System.out.println(Arrays.toString(s));
-        List<Cartoon_speech_bubble> cartoon_speech_bubbles = new ArrayList<>();
+
         JSONParser jsonParser = new JSONParser();
 
-        Long id = 1L; //test
         for (String value : s) {
-            System.out.println(value);
-            /*
             JSONObject jsonObject = (JSONObject) jsonParser.parse(value);
             Cartoon_speech_bubble cartoon_speech_bubble = Cartoon_speech_bubble.builder()
                     .imgNumber(Long.valueOf(cut))
@@ -62,64 +63,63 @@ public class CartoonCreateCon {
                     .width((String) jsonObject.get("width"))
                     .content_text((String) jsonObject.get("context"))
                     .classList((String) jsonObject.get("classes"))
-                    .cartoonId(id)
+                    .cartoonId(cartoonNum)
                     .speechBubbleType((String) jsonObject.get("img"))
                     .build();
             cartoon_speech_bubbles.add(cartoon_speech_bubble);
-
-             */
         }
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss_");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String currentTime = dateFormat.format(timestamp);
 
-
-
-        String localStorePath = "C:\\Users\\김규진\\IdeaProjects\\awdsc\\src\\main\\resources\\static\\assets\\img\\"+ currentTime  + cimg.getOriginalFilename();
+        String localStorePath = "C:\\Users\\김규진\\IdeaProjects\\awdsc\\src\\main\\resources\\static\\assets\\img\\" + currentTime + cimg.getOriginalFilename();
         try {
             cimg.transferTo(new File(localStorePath));
-        }catch (Exception e){
+            localStorePath = "http://localhost:8081/static/assets/img/" + currentTime + cimg.getOriginalFilename();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         //cartoon_img 에 save
         switch (cut) {
-            case "1" -> {
-                //db 행 생성
-                cartoon_img.setImg1(localStorePath);
-                cartoon_img_service.imgSave(cartoon_img);
-                cartoon_img = cartoon_img_service.selectByImg1(localStorePath);
-            }
+            case "1" -> {cartoon_img.setImg1(localStorePath);}
             case "2" -> cartoon_img.setImg2(localStorePath);
             case "3" -> cartoon_img.setImg3(localStorePath);
             case "4" -> {
                 cartoon_img.setImg4(localStorePath);
-                cartoon_img_service.update(cartoon_img);
+                cartoon_img_service.imgSave(cartoon_img);
+                cartoon_speech_bubble_service.saveAll(cartoon_speech_bubbles);
             }
         }
 
-
-        //cartoon_speech 에 저장
-        cartoon_speech_bubble_service.saveAll(cartoon_speech_bubbles);
-
+        //보드 만들기
         /*
         if(cut.equals("4"))
         {
-            Gall_board gall_board = Gall_board.builder()
-                    .boardTitle(cartoonSaveVo.getTitle())
-                    .writer(cartoonSaveVo.getWriter())
-                    .redDate(LocalDate.now())
-                    .board_content(cartoonSaveVo.getContent())
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(u);
+
+            Gall_board gall_board =Gall_board.builder()
+                    .boardTitle((String) jsonObject.get("title"))
+                    .filename(String.valueOf(cartoon_img_service.selectLast().getCartoon_id()))
                     .build();
-
             board_service.saveAuto(gall_board);
-            return "redirect :/cartoon/list";
-
         }
-        */
+         */
+        return "clear";
+    }
 
+    @PostMapping("board")
+    @ResponseBody
+    public String createBoard(@RequestBody String s)
+    {
 
+        //보드 만들기
+        Gall_board gall_board = Gall_board.builder()
+                .boardTitle(s)
+                .filename(String.valueOf(cartoonNum))
+                .build();
+        board_service.saveAuto(gall_board);
         return null;
     }
 

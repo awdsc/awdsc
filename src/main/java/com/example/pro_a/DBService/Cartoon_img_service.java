@@ -34,4 +34,12 @@ public class Cartoon_img_service {
     public void update(Cartoon_img cartoon_img) {
         cartoonImgRepository.update(cartoon_img.getCartoon_id(),cartoon_img.getImg1(),cartoon_img.getImg2(),cartoon_img.getImg3(),cartoon_img.getImg4());
     }
+
+    public Cartoon_img selectLast() {
+        return cartoonImgRepository.lastIndex();
+    }
+
+    public Cartoon_img getLastNum() {
+        return cartoonImgRepository.lastIndex();
+    }
 }

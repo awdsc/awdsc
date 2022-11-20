@@ -128,6 +128,7 @@ backgreound.ondrop = (e ) =>
 let list_bubble = [];
 function nextCut(name)
 {
+    format.set("cut4","not use");
     let finder = document.getElementsByClassName("cobj");
     for(let i = 0;i<finder.length;i++)
     {
@@ -148,14 +149,8 @@ function nextCut(name)
     console.log(format.getAll("cobj"));
     format.set("cut",sessionStorage.getItem("cut"));
     cut++;
-    if(cut <= 4)
-    {
-        sessionStorage.setItem("cut",cut.toString());
-    }else
-    {
-        cut = 1;
-        sessionStorage.setItem("cut",cut.toString());
-    }
+
+
 
 
 
@@ -172,11 +167,25 @@ function nextCut(name)
 
     sender.onload  = () =>{
         if(sender.status === 200)
-        {console.log("aaaaaaaaaaaaaaaaaa")}
+        {
+            if(cut === 5)
+            {
+                console.log("cccccccccccccccccccc");
+                let hidden = document.getElementById("ro");
+                hidden.hidden = false;
+                cut = 1;
+                sessionStorage.setItem("cut",cut.toString());
+            }else if (cut <= 4){
+                sessionStorage.setItem("cut",cut.toString());
+                location.reload();
+                console.log("aaaaaaaaaaaaaaaaaa");
+            }
+
+
+        }
         else {console.log("bbbbbbbbbbbbbbbbbb")};
 
     }
-    //location.reload();
 }
 
  function maker(bType,sx,sy,ex,ey)
@@ -215,3 +224,23 @@ document.onmousedown = saveS;
 document.onmouseup = saveE;
 
 
+function sendTitle()
+{
+    let title = document.getElementById("title");
+    let str = title.value;
+    let ff = new FormData();
+    let sender = new XMLHttpRequest;
+    let data = {"title" : str};
+    ff.append("title",JSON.stringify(data));
+    sender.open("POST","/cartoon/create/board");
+
+    sender.send(str);
+
+    if (sender.status === 200)
+    {
+        console.log("dddddddddddddddddddddddddd");
+    }else {
+        console.log("eeeeeeeeeeeeeeeeeeeeeeeeee");
+    }
+
+}
