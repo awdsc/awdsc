@@ -7,6 +7,7 @@ if(sessionStorage.getItem("cut") != null)
 }else
 {
     cut = 1;
+    sessionStorage.setItem("cut",cut);
 }
 console.log(cut);
 
@@ -132,16 +133,16 @@ function nextCut(name)
     {
         let json = {
             "img": finder.item(i).children.item(1).src,
-                "top": finder.item(i).style.top,
-                "left": finder.item(i).style.left,
-                "height": finder.item(i).style.height,
-                "width": finder.item(i).style.width,
+            "top": finder.item(i).style.top,
+            "left": finder.item(i).style.left,
+            "height": finder.item(i).style.height,
+            "width": finder.item(i).style.width,
             "context": finder.item(i).children.item(0).textContent,
             "classes": finder.item(i).classList.toString()
         };
 
         format.append("cobj",JSON.stringify(json));
-
+        console.log(format.get("cobj"));
     }
 
     console.log(format.getAll("cobj"));

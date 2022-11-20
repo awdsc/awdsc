@@ -48,12 +48,11 @@ public class CartoonCreateCon {
         System.out.println(Arrays.toString(s));
         List<Cartoon_speech_bubble> cartoon_speech_bubbles = new ArrayList<>();
         JSONParser jsonParser = new JSONParser();
-        System.out.println(cut);
 
-        System.out.println(cut);
         Long id = 1L; //test
         for (String value : s) {
             System.out.println(value);
+            /*
             JSONObject jsonObject = (JSONObject) jsonParser.parse(value);
             Cartoon_speech_bubble cartoon_speech_bubble = Cartoon_speech_bubble.builder()
                     .imgNumber(Long.valueOf(cut))
@@ -67,6 +66,8 @@ public class CartoonCreateCon {
                     .speechBubbleType((String) jsonObject.get("img"))
                     .build();
             cartoon_speech_bubbles.add(cartoon_speech_bubble);
+
+             */
         }
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss_");
