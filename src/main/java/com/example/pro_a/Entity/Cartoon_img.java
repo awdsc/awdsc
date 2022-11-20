@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,9 +29,8 @@ public class Cartoon_img {
     @Column(name = "img_4",nullable = true)
     private String img4;
 
-    @ManyToOne
-    @JoinColumn(name = "member_code")
-    private Member member;
+    @Column(name = "member",nullable = false)
+    private Long member;
 
 
 }

@@ -28,7 +28,9 @@ html, body { height: 100%; }
 .make{
     height: 100%;
     width: 100%;
+
 }
+
 
 .cimg{
     height : inherit;

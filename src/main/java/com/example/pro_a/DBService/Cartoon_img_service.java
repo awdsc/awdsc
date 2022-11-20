@@ -13,10 +13,12 @@ import java.util.Optional;
 public class Cartoon_img_service {
     private final CartoonImgRepository cartoonImgRepository;
 
+
+
     public Cartoon_img selectById(Long id)
     {
         Optional<Cartoon_img> cartoon_img = cartoonImgRepository.findById(id);
-        return cartoon_img.get();
+        return cartoon_img.orElse(null);
     }
 
     public void imgSave(Cartoon_img cartoon_img)
@@ -25,4 +27,11 @@ public class Cartoon_img_service {
     }
 
 
+    public Cartoon_img selectByImg1(String localStorePath) {
+        return cartoonImgRepository.findByImg1(localStorePath);
+    }
+
+    public void update(Cartoon_img cartoon_img) {
+        cartoonImgRepository.update(cartoon_img.getCartoon_id(),cartoon_img.getImg1(),cartoon_img.getImg2(),cartoon_img.getImg3(),cartoon_img.getImg4());
+    }
 }

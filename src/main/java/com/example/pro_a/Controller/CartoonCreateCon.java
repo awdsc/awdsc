@@ -6,14 +6,24 @@ import com.example.pro_a.DBService.Cartoon_img_service;
 import com.example.pro_a.DBService.Cartoon_speech_bubble_service;
 import com.example.pro_a.Entity.Cartoon_img;
 import com.example.pro_a.Entity.Cartoon_speech_bubble;
-import com.example.pro_a.Entity.Gall_board;
-import com.example.pro_a.VO.CartoonSaveVo;
+import com.example.pro_a.VO.BackgraoundImg;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.springframework.stereotype.Controller;
+
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 
 @Controller
 @RequestMapping("/cartoon/create")
@@ -22,48 +32,94 @@ public class CartoonCreateCon {
     private  final Cartoon_img_service cartoon_img_service;
     private  final Cartoon_speech_bubble_service cartoon_speech_bubble_service;
     private  final Board_service board_service;
+
+    private  Cartoon_img cartoon_img  = new Cartoon_img();
+
     @GetMapping
     public String aa()
     {
         return "cartoonMakepage";
     }
 
-    @GetMapping("/{id}")
-    public String cartoonCreate(Long id){
 
-        return "cartoonMakePage";
-    }
-
-    @PostMapping("/{id}/submit")
+    @PostMapping("/submit")
     @ResponseBody
-    public String cartoonSave(@RequestBody CartoonSaveVo cartoonSaveVo)
-    {
+    public String cartoonSave(@RequestParam("cimg") MultipartFile cimg, @RequestParam("cut") String cut, @RequestParam("cobj") String[] s ) throws ParseException {
+        System.out.println(Arrays.toString(s));
+        List<Cartoon_speech_bubble> cartoon_speech_bubbles = new ArrayList<>();
+        JSONParser jsonParser = new JSONParser();
+        System.out.println(cut);
+
+        System.out.println(cut);
+        Long id = 1L; //test
+        for (String value : s) {
+            System.out.println(value);
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(value);
+            Cartoon_speech_bubble cartoon_speech_bubble = Cartoon_speech_bubble.builder()
+                    .imgNumber(Long.valueOf(cut))
+                    .top((String) jsonObject.get("top"))
+                    .left((String) jsonObject.get("left"))
+                    .height((String) jsonObject.get("height"))
+                    .width((String) jsonObject.get("width"))
+                    .content_text((String) jsonObject.get("context"))
+                    .classList((String) jsonObject.get("classes"))
+                    .cartoonId(id)
+                    .speechBubbleType((String) jsonObject.get("img"))
+                    .build();
+            cartoon_speech_bubbles.add(cartoon_speech_bubble);
+        }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss_");
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String currentTime = dateFormat.format(timestamp);
+
+
+
+        String localStorePath = "C:\\Users\\김규진\\IdeaProjects\\awdsc\\src\\main\\resources\\static\\assets\\img\\"+ currentTime  + cimg.getOriginalFilename();
+        try {
+            cimg.transferTo(new File(localStorePath));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
         //cartoon_img 에 save
-        List<String> urlList = cartoonSaveVo.getImg();
+        switch (cut) {
+            case "1" -> {
+                //db 행 생성
+                cartoon_img.setImg1(localStorePath);
+                cartoon_img_service.imgSave(cartoon_img);
+                cartoon_img = cartoon_img_service.selectByImg1(localStorePath);
+            }
+            case "2" -> cartoon_img.setImg2(localStorePath);
+            case "3" -> cartoon_img.setImg3(localStorePath);
+            case "4" -> {
+                cartoon_img.setImg4(localStorePath);
+                cartoon_img_service.update(cartoon_img);
+            }
+        }
 
-        Cartoon_img cartoon_img =  Cartoon_img.builder()
-                .img1(urlList.get(1))
-                .img2(urlList.get(2))
-                .img3(urlList.get(3))
-                .img4(urlList.get(4))
-                .build();
 
-        cartoon_img_service.imgSave(cartoon_img);
-        //json에서 말풍선 분리
         //cartoon_speech 에 저장
-        List<Cartoon_speech_bubble> cartoon_speech_bubbles = cartoonSaveVo.getCartoon_speech_bubbleList();
         cartoon_speech_bubble_service.saveAll(cartoon_speech_bubbles);
 
-        Gall_board gall_board = Gall_board.builder()
-                .boardTitle(cartoonSaveVo.getTitle())
-                .writer(cartoonSaveVo.getWriter())
-                .redDate(LocalDate.now())
-                .board_content(cartoonSaveVo.getContent())
-                .build();
+        /*
+        if(cut.equals("4"))
+        {
+            Gall_board gall_board = Gall_board.builder()
+                    .boardTitle(cartoonSaveVo.getTitle())
+                    .writer(cartoonSaveVo.getWriter())
+                    .redDate(LocalDate.now())
+                    .board_content(cartoonSaveVo.getContent())
+                    .build();
 
-        board_service.saveAuto(gall_board);
-        return "redirect :/cartoon/list";
+            board_service.saveAuto(gall_board);
+            return "redirect :/cartoon/list";
+
+        }
+        */
+
+
+        return null;
     }
 
 }

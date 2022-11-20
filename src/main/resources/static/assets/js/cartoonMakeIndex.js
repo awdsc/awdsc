@@ -1,9 +1,14 @@
 
-let cut = 1;
+let cut;
+
 if(sessionStorage.getItem("cut") != null)
 {
-    cut =sessionStorage.getItem("cut");
+    cut = sessionStorage.getItem("cut");
+}else
+{
+    cut = 1;
 }
+console.log(cut);
 
 
 let format = new FormData();
@@ -104,7 +109,7 @@ backgreound.ondrop = (e ) =>
             img.style.height = "100%";
             backgreound.appendChild(img);
             //이미지 파일을 바이너리로 저장
-            format.append("cimg"+cut,data[0]);
+            format.set("cimg",data[0]);
             document.getElementById("insertHelper").style.display  ="none";
             objCounter ++;
         }else
@@ -126,26 +131,51 @@ function nextCut(name)
     for(let i = 0;i<finder.length;i++)
     {
         let json = {
-            "img" : finder.item(i).children.item(1),
-            "position" : [finder.item(i).style.top,finder.item(i).style.left],
-            "size" : [finder.item(i).style.height,finder.item(i).style.width],
-            "context" : finder.item(i).children.item(0).textContent,
-            "class" : finder.item(i).classList.toString()
-        }
-        list_bubble.push(json);
+            "img": finder.item(i).children.item(1).src,
+                "top": finder.item(i).style.top,
+                "left": finder.item(i).style.left,
+                "height": finder.item(i).style.height,
+                "width": finder.item(i).style.width,
+            "context": finder.item(i).children.item(0).textContent,
+            "classes": finder.item(i).classList.toString()
+        };
+
+        format.append("cobj",JSON.stringify(json));
 
     }
-    list_bubble.push(format.get("cimg"+cut));
 
+    console.log(format.getAll("cobj"));
+    format.set("cut",sessionStorage.getItem("cut"));
     cut++;
+    if(cut <= 4)
+    {
+        sessionStorage.setItem("cut",cut.toString());
+    }else
+    {
+        cut = 1;
+        sessionStorage.setItem("cut",cut.toString());
+    }
 
-    sessionStorage.setItem("cut",cut.toString());
+
+
+    if(!format.has("cimg"))
+    {
+        alert("배경이미지를 등록해 주세요.");
+    }
+
     //ajax 전송 + 페이지 리프레쉬
     let sender = new XMLHttpRequest;
-    sender.open("POST","/*",true);
-    sender.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    sender.send(list_bubble);
-    location.reload();
+    sender.open("POST","/cartoon/create/submit",true);
+
+    sender.send(format);
+
+    sender.onload  = () =>{
+        if(sender.status === 200)
+        {console.log("aaaaaaaaaaaaaaaaaa")}
+        else {console.log("bbbbbbbbbbbbbbbbbb")};
+
+    }
+    //location.reload();
 }
 
  function maker(bType,sx,sy,ex,ey)

@@ -15,9 +15,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Table(name = "cartoon_speech_bubble")
 public class Cartoon_speech_bubble {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     @Column(name = "cartoon_id", nullable = false)
     private Long cartoonId;
 
@@ -27,15 +29,28 @@ public class Cartoon_speech_bubble {
     @Column(name = "speech_bubble_type", nullable = true)
     private String speechBubbleType;
 
-    @Column(name = "position", nullable = true)
-    private String position;
-
-    @Column(name = "size", nullable = true)
-    private String size;
 
     @Column(name = "content_text" , nullable = true)
     private String content_text;
 
     @Column(name = "class" , nullable = true)
-    private String ClassList;
+    private String classList;
+
+
+    @Column(name = "width", nullable = true)
+    private String width;
+
+    @Column(name = "height", nullable = true)
+    private String height;
+
+    @Column(name = "top", nullable = true)
+    private String top;
+
+    @Column(name = "lefta", nullable = true)
+    private String left;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }
