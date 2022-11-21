@@ -22,12 +22,12 @@ import java.util.List;
 public class CartoonListCon {
     private final Board_service board_service;
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public String f_list(Model model , @PageableDefault(size = 20) Pageable pageable , ModelMap mm)
     {
         List<Gall_board> gall_boards = board_service.findAll();
         mm.addAttribute("board",gall_boards);
-        return "list";
+        return "/list";
     }
 
     @GetMapping("/list/{type}/{search}")

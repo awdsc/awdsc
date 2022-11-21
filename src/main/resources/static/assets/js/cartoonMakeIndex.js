@@ -170,7 +170,7 @@ function nextCut(name)
         {
             if(cut === 5)
             {
-                console.log("cccccccccccccccccccc");
+
                 let hidden = document.getElementById("ro");
                 hidden.hidden = false;
                 cut = 1;
@@ -178,12 +178,17 @@ function nextCut(name)
             }else if (cut <= 4){
                 sessionStorage.setItem("cut",cut.toString());
                 location.reload();
-                console.log("aaaaaaaaaaaaaaaaaa");
+                if(cut === 4)
+                {
+                    document.getElementById("nextButton").innerText = "제목 입력하기";
+                }
+
+
             }
 
 
         }
-        else {console.log("bbbbbbbbbbbbbbbbbb")};
+        else {}
 
     }
 }
@@ -236,11 +241,5 @@ function sendTitle()
 
     sender.send(str);
 
-    if (sender.status === 200)
-    {
-        console.log("dddddddddddddddddddddddddd");
-    }else {
-        console.log("eeeeeeeeeeeeeeeeeeeeeeeeee");
-    }
 
 }

@@ -40,9 +40,16 @@ public class CartoonCreateCon {
     @GetMapping
     public String aa()
     {
-        cartoonNum =  cartoon_img_service.getLastNum().getCartoon_id();
-        cartoonNum++;
-        return "cartoonMakepage";
+        cartoon_img = cartoon_img_service.getLastNum();
+        if(cartoon_img != null) {
+            cartoonNum = cartoon_img.getCartoon_id();
+            cartoonNum++;
+        }else
+        {
+            cartoonNum = 1L;
+        }
+
+        return "/cartoonMakepage";
     }
 
 
@@ -83,7 +90,7 @@ public class CartoonCreateCon {
 
         //cartoon_img 에 save
         switch (cut) {
-            case "1" -> {cartoon_img.setImg1(localStorePath);}
+            case "1" -> cartoon_img.setImg1(localStorePath);
             case "2" -> cartoon_img.setImg2(localStorePath);
             case "3" -> cartoon_img.setImg3(localStorePath);
             case "4" -> {
@@ -120,7 +127,7 @@ public class CartoonCreateCon {
                 .filename(String.valueOf(cartoonNum))
                 .build();
         board_service.saveAuto(gall_board);
-        return null;
+        return "redirect:/list";
     }
 
 }
