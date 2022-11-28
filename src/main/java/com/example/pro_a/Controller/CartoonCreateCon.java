@@ -55,9 +55,12 @@ public class CartoonCreateCon {
 
     @PostMapping("/submit")
     @ResponseBody
-    public String cartoonSave(@RequestParam("cimg") MultipartFile cimg, @RequestParam("cut") String cut, @RequestParam("cobj") String[] s , @RequestParam("cut4") String u) throws ParseException {
-        System.out.println(Arrays.toString(s));
+    public String cartoonSave(@RequestParam("cimg") MultipartFile cimg,
+                              @RequestParam("cut") String cut,
+                              @RequestParam("cobj") String[] s
+                              ) throws ParseException {
 
+        //cobj json parse
         JSONParser jsonParser = new JSONParser();
 
         for (String value : s) {
@@ -80,7 +83,7 @@ public class CartoonCreateCon {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String currentTime = dateFormat.format(timestamp);
 
-        String localStorePath = "C:\\Users\\김규진\\IdeaProjects\\awdsc\\src\\main\\resources\\static\\assets\\img\\" + currentTime + cimg.getOriginalFilename();
+        String localStorePath = "C:\\Users\\km\\IdeaProjects\\Pro_A\\src\\main\\resources\\static\\assets\\img\\" + currentTime + cimg.getOriginalFilename();
         try {
             cimg.transferTo(new File(localStorePath));
             localStorePath = "http://localhost:8081/static/assets/img/" + currentTime + cimg.getOriginalFilename();
@@ -99,20 +102,6 @@ public class CartoonCreateCon {
                 cartoon_speech_bubble_service.saveAll(cartoon_speech_bubbles);
             }
         }
-
-        //보드 만들기
-        /*
-        if(cut.equals("4"))
-        {
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(u);
-
-            Gall_board gall_board =Gall_board.builder()
-                    .boardTitle((String) jsonObject.get("title"))
-                    .filename(String.valueOf(cartoon_img_service.selectLast().getCartoon_id()))
-                    .build();
-            board_service.saveAuto(gall_board);
-        }
-         */
         return "clear";
     }
 

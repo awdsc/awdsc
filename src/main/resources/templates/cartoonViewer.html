@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>만화 뷰어</title>
+</head>
+<body>
+<section id="cartoon">
+    <div id = "cut1">
+        <img th:src="${cartoonImg.getImg1()}" alt="aaa">
+        <div th:each ="bubble : ${bubble1}" >
+            <img th:src = "${bubble.getSpeechBubbleType()}" th:style = "${'height:' bubble.getHeight()}">
+        </div>
+    </div>
+    <div id = "cut2">
+        <img th:src="${cartoonImg.getImg2()}">
+    </div>
+    <div id = "cut3">
+        <img th:src="${cartoonImg.getImg3()}">
+    </div>
+    <div id ="cut4">
+        <img th:src="${cartoonImg.getImg4()}">
+    </div>
+</section>
+</body>
+</html>
