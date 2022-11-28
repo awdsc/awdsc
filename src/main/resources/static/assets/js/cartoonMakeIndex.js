@@ -170,7 +170,6 @@ function nextCut(name)
         {
             if(cut === 5)
             {
-
                 let hidden = document.getElementById("ro");
                 hidden.hidden = false;
                 cut = 1;
