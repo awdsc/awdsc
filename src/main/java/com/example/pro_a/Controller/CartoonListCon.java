@@ -30,11 +30,14 @@ public class CartoonListCon {
         return "/list";
     }
 
-    @GetMapping("/list/{type}/{search}")
-    public String s_list(Model model, @PathVariable String type,@PathVariable String search) throws ParseException {
+    @GetMapping("/search{search}")
+    public String s_list(Model model,@PathVariable String search) throws ParseException {
+        String type = "title";
+        System.out.println("=========================================");
+        System.out.println(search);
         List<Gall_board> sList = board_service.search(type,search);
         model.addAttribute(sList);
-        return "lista";
+        return "/list";
     }
 
 

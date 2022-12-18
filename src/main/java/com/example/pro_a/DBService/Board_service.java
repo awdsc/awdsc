@@ -25,7 +25,7 @@ public class Board_service {
     //초기 호출
     public List<Gall_board> findAll()
     {
-        return boardRepository.findAll(Sort.by(Sort.Direction.DESC,"readcount"));
+        return boardRepository.findAll(Sort.by(Sort.Direction.DESC,"boardReadCount"));
     }
 
     public List<Gall_board> search(String type,String search) throws ParseException {

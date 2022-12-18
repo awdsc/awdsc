@@ -125,7 +125,7 @@ backgreound.ondrop = (e ) =>
 
 
 }
-let list_bubble = [];
+
 function nextCut(name)
 {
     format.set("cut4","not use");
@@ -143,16 +143,11 @@ function nextCut(name)
         };
 
         format.append("cobj",JSON.stringify(json));
-        console.log(format.get("cobj"));
     }
 
     console.log(format.getAll("cobj"));
     format.set("cut",sessionStorage.getItem("cut"));
     cut++;
-
-
-
-
 
     if(!format.has("cimg"))
     {
@@ -240,5 +235,12 @@ function sendTitle()
 
     sender.send(str);
 
+    sender.onload =() =>{
+        if(sender.status === 200)
+        {
+            location.href = sender.response;
+        }
+
+    }
 
 }

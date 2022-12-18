@@ -15,7 +15,6 @@ import javax.persistence.*;
 public class Cartoon_img {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cartoon_id", nullable = false)
     private Long cartoon_id;
 

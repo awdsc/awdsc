@@ -35,11 +35,12 @@ public class CartoonViewer {
         Gall_board gall_board = board_service.findOneBoard(id);
         List<Gall_coment> coments = board_coment_service.comentList(id);
         Cartoon_img cartoon_img = cartoon_img_service.selectById(id);
-        List<Cartoon_speech_bubble> cartoon_speech_bubbles = cartoon_speech_bubble_service.selectById(String.valueOf(id));
-        List<Cartoon_speech_bubble> cartoon_speech_bubbles1 = new ArrayList<Cartoon_speech_bubble>();
-        List<Cartoon_speech_bubble> cartoon_speech_bubbles2 = new ArrayList<Cartoon_speech_bubble>();
-        List<Cartoon_speech_bubble> cartoon_speech_bubbles3 = new ArrayList<Cartoon_speech_bubble>();
-        List<Cartoon_speech_bubble> cartoon_speech_bubbles4 = new ArrayList<Cartoon_speech_bubble>();
+        List<Cartoon_speech_bubble> cartoon_speech_bubbles = cartoon_speech_bubble_service.selectById(id);
+        List<Cartoon_speech_bubble> cartoon_speech_bubbles1 = new ArrayList<>();
+        List<Cartoon_speech_bubble> cartoon_speech_bubbles2 = new ArrayList<>();
+        List<Cartoon_speech_bubble> cartoon_speech_bubbles3 = new ArrayList<>();
+        List<Cartoon_speech_bubble> cartoon_speech_bubbles4 = new ArrayList<>();
+
 
         for (Cartoon_speech_bubble bubble :cartoon_speech_bubbles) {
             if(bubble.getImgNumber().equals(1L))
@@ -58,7 +59,6 @@ public class CartoonViewer {
                 cartoon_speech_bubbles4.add(bubble);
             }
         }
-
 
 
         mm.addAttribute("cartoon",gall_board);

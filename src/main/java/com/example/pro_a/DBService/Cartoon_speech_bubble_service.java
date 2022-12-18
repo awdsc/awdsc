@@ -13,7 +13,7 @@ import java.util.List;
 public class Cartoon_speech_bubble_service {
     private final CartoonSpeechBubbleRepository cartoonSpeechBubbleRepository;
 
-    public List<Cartoon_speech_bubble> selectById(String id)
+    public List<Cartoon_speech_bubble> selectById(Long id)
     {
         return cartoonSpeechBubbleRepository.findAllByCartoonId(id);
     }

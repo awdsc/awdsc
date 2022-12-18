@@ -28,6 +28,15 @@ html, body { height: 100%; }
 .make{
     height: 100%;
     width: 100%;
+    background-color: rgba(85, 85, 85, 0.2);
+    background-image: linear-gradient(30deg, rgba(68, 68, 68, 0.2) 12%, transparent 12.5%, transparent 87%, rgba(68, 68, 68, 0.2) 87.5%, rgba(68, 68, 68, 0.2)),
+    linear-gradient(150deg, rgba(68, 68, 68, 0.2) 12%, transparent 12.5%, transparent 87%, rgba(68, 68, 68, 0.2) 87.5%, rgba(68, 68, 68, 0.2)),
+    linear-gradient(30deg, rgba(68, 68, 68, 0.2) 12%, transparent 12.5%, transparent 87%, rgba(68, 68, 68, 0.2)87.5%, rgba(68, 68, 68, 0.2)),
+    linear-gradient(150deg, rgba(68, 68, 68, 0.2) 12%, transparent 12.5%, transparent 87%, rgba(68, 68, 68, 0.2) 87.5%, rgba(68, 68, 68, 0.2)),
+    linear-gradient(60deg, rgba(136, 136, 136, 0.2) 25%, transparent 25.5%, transparent 75%,rgba(136, 136, 136, 0.2) 75%, rgba(136, 136, 136, 0.2)),
+    linear-gradient(60deg, rgba(136, 136, 136, 0.2) 25%, transparent 25.5%, transparent 75%, rgba(136, 136, 136, 0.2) 75%, rgba(136, 136, 136, 0.2));
+    background-position: 0 0, 0 0, 25px 50px, 25px 50px, 0 0, 25px 50px;
+    background-size: 50px 100px;
 
 }
 
@@ -63,8 +72,9 @@ html, body { height: 100%; }
     width: 50%;
     height: 70%;
     justify-content: center;
-    background-color: gray;
+    background-color: #6b6b6b;
     transform: translate(50%,30%);
+    border: 1px solid black;
 }
 
 .nextButton{
@@ -87,16 +97,3 @@ input {
     transform: translate(5%,0);
 }
 
-#createCut
-{
-    background-color: #555;
-    background-image: linear-gradient(30deg, #444 12%, transparent 12.5%, transparent 87%, #444 87.5%, #444),
-    linear-gradient(150deg, #444 12%, transparent 12.5%, transparent 87%, #444 87.5%, #444),
-    linear-gradient(30deg, #444 12%, transparent 12.5%, transparent 87%, #444 87.5%, #444),
-    linear-gradient(150deg, #444 12%, transparent 12.5%, transparent 87%, #444 87.5%, #444),
-    linear-gradient(60deg, #888 25%, transparent 25.5%, transparent 75%, #888 75%, #888),
-    linear-gradient(60deg, #888 25%, transparent 25.5%, transparent 75%, #888 75%, #888);
-    background-position: 0 0, 0 0, 25px 50px, 25px 50px, 0 0, 25px 50px;
-    background-size: 50px 100px;
-    opacity: 0.2;
-}

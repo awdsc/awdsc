@@ -3,24 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <title>만화 뷰어</title>
+    <link href="../../static/assets/css/cartoonMake.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="../../static/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="../../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../../static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../../static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="../../static/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <div id="logo">
+            <a href="index.html"><h3>만화집</h3></a>
+            <!-- Uncomment below if you prefer to use a text logo -->
+            <!--<h1><a href="index.html">Regna</a></h1>-->
+        </div>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="/">메인페이지</a></li>
+                <li><a class="nav-link scrollto btn btn-success" href="/cartoon/create" >만화 만들기</a></li>
+            </ul>
+        </nav>
+    </div>
+</header><!-- End Header -->
 <section id="cartoon">
-    <div id = "cut1">
-        <img th:src="${cartoonImg.getImg1()}" alt="aaa">
-        <div th:each ="bubble : ${bubble1}" >
-            <img th:src = "${bubble.getSpeechBubbleType()}" th:style = "${'height:' bubble.getHeight()}">
+    <div id = "cut1" style="padding-bottom: 150px">
+        <img th:src="${cartoonImg.getImg1()}"  class="backgroundImg">
+        <div th:each ="bubble : ${bubble1}" th:style="'height:'+${bubble.getHeight()}+';width:'+${bubble.getWidth()}+';top:'+${bubble.getTop()}+';left:'+${bubble.getLeft()}+';position:relative;'">
+            <img th:src = "${bubble.getSpeechBubbleType()}" class="cimg">
+            <a th:text = "${bubble.getContent_text()}"style="text-align: center;align-items: center;"></a>
         </div>
     </div>
-    <div id = "cut2">
-        <img th:src="${cartoonImg.getImg2()}">
+    <div id = "cut2" style="padding-bottom: 150px">
+        <img th:src="${cartoonImg.getImg2()}" class="backgroundImg">
+        <div th:each ="bubble : ${bubble2}" th:style="'height:'+${bubble.getHeight()}+';width:'+${bubble.getWidth()}+';top:'+${bubble.getTop()}+';left:'+${bubble.getLeft()}+';position:relative;'">
+            <img th:src = "${bubble.getSpeechBubbleType()}" class="cimg">
+            <a th:text = "${bubble.getContent_text()}"style="text-align: center ;align-items: center;"></a>
+        </div>
     </div>
-    <div id = "cut3">
-        <img th:src="${cartoonImg.getImg3()}">
+    <div id = "cut3" style="padding-bottom: 150px">
+        <img th:src="${cartoonImg.getImg3()}" class="backgroundImg">
+        <div th:each ="bubble : ${bubble3}" th:style="'height:'+${bubble.getHeight()}+';width:'+${bubble.getWidth()}+';top:'+${bubble.getTop()}+';left:'+${bubble.getLeft()}+';position:relative;'">
+
+            <img th:src = "${bubble.getSpeechBubbleType()}" class="cimg">
+            <a th:text = "${bubble.getContent_text()}" style="text-align: center;align-items: center;"></a>
+        </div>
     </div>
-    <div id ="cut4">
-        <img th:src="${cartoonImg.getImg4()}">
+    <div id ="cut4" style="padding-bottom: 150px">
+        <img th:src="${cartoonImg.getImg4()}" class="backgroundImg">
+        <div th:each ="bubble : ${bubble4}" th:style="'height:'+${bubble.getHeight()}+';width:'+${bubble.getWidth()}+';top:'+${bubble.getTop()}+';left:'+${bubble.getLeft()}+';position:relative;'">
+            <img th:src = "${bubble.getSpeechBubbleType()}" class="cimg">
+            <a th:text = "${bubble.getContent_text()}" style="text-align: center;align-items: center;"></a>
+        </div>
     </div>
 </section>
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>만화집</strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+    </div>
+</footer><!-- End Footer -->
+
+<script src="../../static/assets/vendor/purecounter/purecounter.js"></script>
+<script src="../../static/assets/vendor/aos/aos.js"></script>
+<script src="../../static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="../../static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="../../static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="../../static/assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="../../static/assets/js/main.js"></script>
+
 </body>
 </html>

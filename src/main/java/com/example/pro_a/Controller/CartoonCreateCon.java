@@ -23,7 +23,6 @@ import java.io.File;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -34,21 +33,31 @@ public class CartoonCreateCon {
     private  final Cartoon_img_service cartoon_img_service;
     private  final Cartoon_speech_bubble_service cartoon_speech_bubble_service;
     private  final Board_service board_service;
-    private   List<Cartoon_speech_bubble> cartoon_speech_bubbles = new ArrayList<>();
-    private  Cartoon_img cartoon_img = new Cartoon_img();
+    private static List<Cartoon_speech_bubble> cartoon_speech_bubbles = new ArrayList<>();
+    private static Cartoon_img cartoon_img = new Cartoon_img();
     private Long cartoonNum;
+
+    private String ona = "off";
     @GetMapping
     public String aa()
     {
-        cartoon_img = cartoon_img_service.getLastNum();
-        if(cartoon_img != null) {
-            cartoonNum = cartoon_img.getCartoon_id();
-            cartoonNum++;
-        }else
-        {
-            cartoonNum = 1L;
-        }
 
+        System.out.println(ona);
+        if(ona.equals("off")) {
+            cartoon_img = cartoon_img_service.getLastNum();
+            if (cartoon_img != null) {
+                cartoonNum = cartoon_img.getCartoon_id();
+                cartoonNum++;
+            } else {
+                cartoonNum = 1L;
+            }
+            cartoon_img = Cartoon_img.builder()
+                    .cartoon_id(cartoonNum)
+                    .build();
+            ona = "on";
+        }
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println(cartoonNum);
         return "/cartoonMakepage";
     }
 
@@ -64,6 +73,7 @@ public class CartoonCreateCon {
         JSONParser jsonParser = new JSONParser();
 
         for (String value : s) {
+            System.out.println(value);
             JSONObject jsonObject = (JSONObject) jsonParser.parse(value);
             Cartoon_speech_bubble cartoon_speech_bubble = Cartoon_speech_bubble.builder()
                     .imgNumber(Long.valueOf(cut))
@@ -82,8 +92,9 @@ public class CartoonCreateCon {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss_");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String currentTime = dateFormat.format(timestamp);
-
-        String localStorePath = "C:\\Users\\km\\IdeaProjects\\Pro_A\\src\\main\\resources\\static\\assets\\img\\" + currentTime + cimg.getOriginalFilename();
+        //집 C:\Users\김규진\IdeaProjects\awdsc\src\main\resources\static\assets\img\
+        //학교 C:\Users\km\IdeaProjects\Pro_A\src\main\resources\static\assets\img\
+        String localStorePath = "C:\\Users\\김규진\\IdeaProjects\\awdsc\\src\\main\\resources\\static\\assets\\img\\" + currentTime + cimg.getOriginalFilename();
         try {
             cimg.transferTo(new File(localStorePath));
             localStorePath = "http://localhost:8081/static/assets/img/" + currentTime + cimg.getOriginalFilename();
@@ -98,6 +109,8 @@ public class CartoonCreateCon {
             case "3" -> cartoon_img.setImg3(localStorePath);
             case "4" -> {
                 cartoon_img.setImg4(localStorePath);
+                cartoon_img.setCartoon_id(cartoonNum);
+                System.out.println(cartoon_img.getCartoon_id());
                 cartoon_img_service.imgSave(cartoon_img);
                 cartoon_speech_bubble_service.saveAll(cartoon_speech_bubbles);
             }
@@ -109,14 +122,14 @@ public class CartoonCreateCon {
     @ResponseBody
     public String createBoard(@RequestBody String s)
     {
-
         //보드 만들기
         Gall_board gall_board = Gall_board.builder()
                 .boardTitle(s)
                 .filename(String.valueOf(cartoonNum))
                 .build();
         board_service.saveAuto(gall_board);
-        return "redirect:/list";
+        ona = "off";
+        return "/cartoon/list";
     }
 
 }
