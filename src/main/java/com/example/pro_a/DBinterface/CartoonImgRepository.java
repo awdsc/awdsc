@@ -18,4 +18,7 @@ public interface CartoonImgRepository extends JpaRepository<Cartoon_img,Long> {
 
     @Query(nativeQuery = true , value = "select * from cartoon_img order by cartoon_id desc limit 1")
     Cartoon_img lastIndex();
+
+    @Query(nativeQuery = true,value = "select img_1 from cartoon_img where cartoon_id = :id ;")
+    String findByIdT(Long id);
 }

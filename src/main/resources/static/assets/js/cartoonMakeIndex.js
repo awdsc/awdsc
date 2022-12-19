@@ -130,14 +130,19 @@ function nextCut(name)
 {
     format.set("cut4","not use");
     let finder = document.getElementsByClassName("cobj");
+    let defaultPx = 150 + (parseInt(sessionStorage.getItem("cut"))-1)*904;
     for(let i = 0;i<finder.length;i++)
     {
+        let top =  parseInt(finder.item(i).style.top.substring(0,finder.item(i).style.top.length-2))+defaultPx;
+        let left =parseInt(finder.item(i).style.left.substring(0,finder.item(i).style.left.length-2));
+        let height =parseInt(finder.item(i).style.height.substring(0,finder.item(i).style.height.length-2));
+        let width =parseInt(finder.item(i).style.width.substring(0,finder.item(i).style.width.length-2));
         let json = {
             "img": finder.item(i).children.item(1).src,
-            "top": finder.item(i).style.top,
-            "left": finder.item(i).style.left,
-            "height": finder.item(i).style.height,
-            "width": finder.item(i).style.width,
+            "top": top.toString(),
+            "left": left.toString(),
+            "height": height.toString(),
+            "width": width.toString(),
             "context": finder.item(i).children.item(0).textContent,
             "classes": finder.item(i).classList.toString()
         };

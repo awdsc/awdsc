@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,8 +57,7 @@ public class CartoonCreateCon {
                     .build();
             ona = "on";
         }
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        System.out.println(cartoonNum);
+
         return "/cartoonMakepage";
     }
 
@@ -94,7 +94,7 @@ public class CartoonCreateCon {
         String currentTime = dateFormat.format(timestamp);
         //집 C:\Users\김규진\IdeaProjects\awdsc\src\main\resources\static\assets\img\
         //학교 C:\Users\km\IdeaProjects\Pro_A\src\main\resources\static\assets\img\
-        String localStorePath = "C:\\Users\\김규진\\IdeaProjects\\awdsc\\src\\main\\resources\\static\\assets\\img\\" + currentTime + cimg.getOriginalFilename();
+        String localStorePath = "C:\\Users\\km\\IdeaProjects\\Pro_A\\src\\main\\resources\\static\\assets\\img\\" + currentTime + cimg.getOriginalFilename();
         try {
             cimg.transferTo(new File(localStorePath));
             localStorePath = "http://localhost:8081/static/assets/img/" + currentTime + cimg.getOriginalFilename();
@@ -122,8 +122,10 @@ public class CartoonCreateCon {
     @ResponseBody
     public String createBoard(@RequestBody String s)
     {
+        LocalDate localDate = LocalDate.now();
         //보드 만들기
         Gall_board gall_board = Gall_board.builder()
+                .redDate(localDate)
                 .boardTitle(s)
                 .filename(String.valueOf(cartoonNum))
                 .build();

@@ -22,7 +22,6 @@ public class Gall_board {
 
     //작성자 외래키 연결 : member >> member_code
     @Column(name = "writer",nullable = true)
-    @JoinColumn(name="member_code")
     private int writer;
     
     //제목

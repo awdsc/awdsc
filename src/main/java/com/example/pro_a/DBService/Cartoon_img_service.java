@@ -6,6 +6,7 @@ import com.example.pro_a.Entity.Cartoon_img;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,5 +42,10 @@ public class Cartoon_img_service {
 
     public Cartoon_img getLastNum() {
         return cartoonImgRepository.lastIndex();
+    }
+
+
+    public String findFirstUrl(String filename) {
+        return cartoonImgRepository.findByIdT(Long.valueOf(filename));
     }
 }

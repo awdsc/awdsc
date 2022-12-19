@@ -37,31 +37,30 @@
 <section id="cartoon">
     <div id = "cut1" style="padding-bottom: 150px">
         <img th:src="${cartoonImg.getImg1()}"  class="backgroundImg">
-        <div th:each ="bubble : ${bubble1}" th:style="'height:'+${bubble.getHeight()}+';width:'+${bubble.getWidth()}+';top:'+${bubble.getTop()}+';left:'+${bubble.getLeft()}+';position:relative;'">
+        <div th:each ="bubble : ${bubble1}" th:style="'height:'+${bubble.getHeight()}+';width:'+${bubble.getWidth()}+';top:'+${bubble.getTop()}+';left:'+${bubble.getLeft()}+';position:absolute;'">
             <img th:src = "${bubble.getSpeechBubbleType()}" class="cimg">
-            <a th:text = "${bubble.getContent_text()}"style="text-align: center;align-items: center;"></a>
+            <a th:text = "${bubble.getContent_text()}"style="text-align: center;z-index: 5;position: relative;top:50%;left: 30%;transform: translate(-50%,-50%)"></a>
         </div>
     </div>
     <div id = "cut2" style="padding-bottom: 150px">
         <img th:src="${cartoonImg.getImg2()}" class="backgroundImg">
-        <div th:each ="bubble : ${bubble2}" th:style="'height:'+${bubble.getHeight()}+';width:'+${bubble.getWidth()}+';top:'+${bubble.getTop()}+';left:'+${bubble.getLeft()}+';position:relative;'">
+        <div th:each ="bubble : ${bubble2}" th:style="'height:'+${bubble.getHeight()}+'px;width:'+${bubble.getWidth()}+'px;top:'+${bubble.getTop()}+'px;left:'+${bubble.getLeft()}+'px;position:absolute;'">
             <img th:src = "${bubble.getSpeechBubbleType()}" class="cimg">
-            <a th:text = "${bubble.getContent_text()}"style="text-align: center ;align-items: center;"></a>
+            <a th:text = "${bubble.getContent_text()}"style="text-align: center ;z-index: 5;position: relative;top:50%;left: 30%;transform: translate(-50%,-50%)"></a>
         </div>
     </div>
     <div id = "cut3" style="padding-bottom: 150px">
         <img th:src="${cartoonImg.getImg3()}" class="backgroundImg">
-        <div th:each ="bubble : ${bubble3}" th:style="'height:'+${bubble.getHeight()}+';width:'+${bubble.getWidth()}+';top:'+${bubble.getTop()}+';left:'+${bubble.getLeft()}+';position:relative;'">
-
+        <div th:each ="bubble : ${bubble3}" th:style="'height:'+${bubble.getHeight()}+'px;width:'+${bubble.getWidth()}+'px;top:'+${bubble.getTop()}+'px;left:'+${bubble.getLeft()}+'px;position:absolute;'">
             <img th:src = "${bubble.getSpeechBubbleType()}" class="cimg">
-            <a th:text = "${bubble.getContent_text()}" style="text-align: center;align-items: center;"></a>
+            <a th:text = "${bubble.getContent_text()}" style="text-align: center;z-index: 5;position: relative;top:50%;left: 30%;transform: translate(-50%,-50%)"></a>
         </div>
     </div>
     <div id ="cut4" style="padding-bottom: 150px">
         <img th:src="${cartoonImg.getImg4()}" class="backgroundImg">
-        <div th:each ="bubble : ${bubble4}" th:style="'height:'+${bubble.getHeight()}+';width:'+${bubble.getWidth()}+';top:'+${bubble.getTop()}+';left:'+${bubble.getLeft()}+';position:relative;'">
+        <div th:each ="bubble : ${bubble4}" th:style="'height:'+${bubble.getHeight()}+'px;width:'+${bubble.getWidth()}+'px;top:'+${bubble.getTop()}+'px;left:'+${bubble.getLeft()}+'px;position:absolute;'">
             <img th:src = "${bubble.getSpeechBubbleType()}" class="cimg">
-            <a th:text = "${bubble.getContent_text()}" style="text-align: center;align-items: center;"></a>
+            <a th:text = "${bubble.getContent_text()}" style="text-align: center;z-index: 5;position: relative;top:50%;left: 30%;transform: translate(-50%,-50%)"></a>
         </div>
     </div>
 </section>

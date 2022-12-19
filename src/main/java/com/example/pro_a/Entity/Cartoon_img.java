@@ -3,6 +3,7 @@ package com.example.pro_a.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -10,7 +11,6 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Table(name = "cartoon_img")
 public class Cartoon_img {
 
@@ -33,6 +33,7 @@ public class Cartoon_img {
 
     @Column(name = "member_code", nullable = true)
     private Long member;
+
 
 
 }
